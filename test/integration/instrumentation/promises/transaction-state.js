@@ -64,6 +64,7 @@ function runTests(t, agent, Promise, library) {
   function doPerformTests(name, resolve, reject) {
     t.test(name + ': does not expose internal properties', function(t) {
       t.plan(1 * COUNT + 1)
+      agent.config.transaction_tracer.hide_internals = true
 
       runMultiple(COUNT, function(i, cb) {
         helper.runInTransaction(agent, function() {
